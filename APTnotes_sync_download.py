@@ -29,8 +29,8 @@ if APTnotes.status_code == 200:
 
             # Parse preview page for desired elements to build download URL
             soup = BeautifulSoup(report_splash.text, 'lxml')
-            sections = soup.find('body').find('script').contents[0].split(';')
-            app_api = json.loads(sections[1].split('=')[1])['/app-api/enduserapp/shared-item']
+            sections = soup.find('body').find_all('script')[4].contents[0].split(';')
+            app_api = json.loads(sections[0].split('=')[1])['/app-api/enduserapp/shared-item']
             
             # Build download URL
             box_url = "https://app.box.com/index.php"
